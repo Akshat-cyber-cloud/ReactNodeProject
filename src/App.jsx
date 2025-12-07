@@ -1,24 +1,44 @@
-import React from 'react'
-import './index.css'
-import Navbar from './Components/Navbar.jsx'
-import Hero from './Components/Hero.jsx'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './index.css';
+
+import Navbar from './Components/Navbar.jsx';
+import Hero from './Components/Hero.jsx';
 import Aurora from './Components/Aurora.jsx';
 import Section1 from './Components/Section1.jsx';
 
+
+import Startup from './Pages/Startup.jsx';
+import StartHero from './Pages/StartHero.jsx';
+import FloatingLines from './Pages/FloatingLines.jsx';
+import StartServices from './Pages/StartServices.jsx';
+
 const App = () => {
   return (
-    <div>
-      <Aurora
-        colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-        blend={0.5}
-        amplitude={1.0}
-        speed={0.5}
-      />
-      <Navbar />
-      <Hero />
-      <Section1 />
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Navbar />
+            <Aurora />
+            <Hero />
+            <Section1 />
+          </>
+        }
+        />
 
-export default App
+        <Route path="/startup" element={
+          <>
+            <FloatingLines />
+            <Startup />
+            <StartHero />
+            <StartServices />
+          </>
+        }
+        />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
