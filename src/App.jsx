@@ -12,6 +12,8 @@ import Startup from './Pages/Startup.jsx';
 import StartHero from './Pages/StartHero.jsx';
 import FloatingLines from './Pages/FloatingLines.jsx';
 import StartServices from './Pages/StartServices.jsx';
+import WhyChooseUs from './Pages/WhyChooseUs.jsx';
+import Review from './Pages/Review.jsx';
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
             <Startup />
             <StartHero />
             <StartServices />
+            <WhyChooseUs />
+            <Review />
           </>
         }
         />
