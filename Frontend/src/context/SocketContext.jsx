@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+const SOCKET_URL = import.meta.env.VITE_API_URL;
+
 
 const SocketContext = createContext(null);
 
@@ -17,19 +19,22 @@ export const SocketProvider = ({ children }) => {
 
         if (token && user) {
             console.log('🔌 Attempting to connect socket...');
-            
+
             // Connect to Socket.io Server
-            const newSocket = io('http://localhost:5000', {
+            const SOCKET_URL = import.meta.env.VITE_API_URL;
+
+            const newSocket = io(SOCKET_URL, {
                 auth: {
-                    token: token
+                    token: token,
                 },
                 reconnection: true,
                 reconnectionAttempts: 5,
                 reconnectionDelay: 1000,
                 reconnectionDelayMax: 5000,
                 timeout: 20000,
-                transports: ['websocket', 'polling'] // Try websocket first, fallback to polling
+                transports: ['websocket', 'polling'],
             });
+
 
             newSocket.on('connect', () => {
                 console.log('✅ Socket Connected:', newSocket.id);
@@ -40,7 +45,7 @@ export const SocketProvider = ({ children }) => {
             newSocket.on('disconnect', (reason) => {
                 console.log('❌ Socket Disconnected. Reason:', reason);
                 setIsConnected(false);
-                
+
                 // If disconnect was due to server closing, don't try to reconnect
                 if (reason === 'io server disconnect') {
                     setConnectionError('Server disconnected. Please refresh the page.');
@@ -92,13 +97,13 @@ export const SocketProvider = ({ children }) => {
     };
 
     return (
-        <SocketContext.Provider value={{ 
-            socket, 
-            isConnected, 
+        <SocketContext.Provider value={{
+            socket,
+            isConnected,
             connectionError,
-            targetChat, 
-            startChat, 
-            setTargetChat 
+            targetChat,
+            startChat,
+            setTargetChat
         }}>
             {children}
         </SocketContext.Provider>

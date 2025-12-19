@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './PostChallengeModal.css';
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const PostChallengeModal = ({ isOpen, onClose }) => {
   const { user } = useAuth();
@@ -31,7 +33,7 @@ const PostChallengeModal = ({ isOpen, onClose }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/opportunities', {
+      const response = await fetch(`${BASE_URL}/api/opportunities`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

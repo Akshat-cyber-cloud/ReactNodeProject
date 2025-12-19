@@ -19,6 +19,9 @@ const Login = () => {
     setError('');
   };
 
+
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -27,8 +30,8 @@ const Login = () => {
     try {
       const endpoint =
         formData.userType === 'startup'
-          ? 'http://localhost:5000/api/startups/login'
-          : 'http://localhost:5000/api/corporates/login';
+          ? `${BASE_URL}/api/startups/login`
+          : `${BASE_URL}/api/corporates/login`;
 
       const response = await fetch(endpoint, {
         method: 'POST',

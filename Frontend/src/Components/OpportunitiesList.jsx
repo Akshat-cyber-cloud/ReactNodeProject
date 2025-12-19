@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PostSolutionModal from './PostSolutionModal';
 import { useSocket } from '../context/SocketContext';
 import './OpportunitiesList.css';
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const OpportunitiesList = ({ isOpen, onClose }) => {
   const { startChat } = useSocket();
@@ -20,7 +22,8 @@ const OpportunitiesList = ({ isOpen, onClose }) => {
   const fetchOpportunities = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/opportunities');
+      const response = await fetch(`${BASE_URL}/api/opportunities`);
+
       const data = await response.json();
 
       if (!response.ok) {

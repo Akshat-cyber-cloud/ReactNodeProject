@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import './PostSolutionModal.css';
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const PostSolutionModal = ({ isOpen, onClose, opportunityId = null }) => {
   const { user } = useAuth();
@@ -32,7 +34,7 @@ const PostSolutionModal = ({ isOpen, onClose, opportunityId = null }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/solutions', {
+      const response = await fetch(`${BASE_URL}/api/solutions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

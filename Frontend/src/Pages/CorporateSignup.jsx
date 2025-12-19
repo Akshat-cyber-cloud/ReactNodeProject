@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './style.css';
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const CorporateSignup = () => {
   const navigate = useNavigate();
@@ -44,22 +46,25 @@ const CorporateSignup = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/corporates/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          companyName: formData.companyName,
-          email: formData.email,
-          password: formData.password,
-          contactPerson: formData.contactPerson,
-          industry: formData.industry,
-          description: formData.description,
-          website: formData.website,
-          companySize: formData.companySize,
-        }),
-      });
+      const response = await fetch(
+        `${BASE_URL}/api/corporates/signup`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            companyName: formData.companyName,
+            email: formData.email,
+            password: formData.password,
+            contactPerson: formData.contactPerson,
+            industry: formData.industry,
+            description: formData.description,
+            website: formData.website,
+            companySize: formData.companySize,
+          }),
+        }
+      );
 
       const data = await response.json();
 
