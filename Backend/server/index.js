@@ -36,7 +36,7 @@ const io = new Server(server, {
 });
 
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
 const { MONGO_URI, JWT_SECRET } = process.env;
 
 if (!MONGO_URI) {
