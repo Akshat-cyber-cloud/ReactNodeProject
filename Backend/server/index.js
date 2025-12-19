@@ -15,7 +15,7 @@ const { generateToken, authenticate } = require('./middleware/auth');
 
 const app = express();
 const server = http.createServer(app); // Create HTTP server
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 
@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
 
   // Ensure user.id is a string for room consistency
   const userId = String(socket.user.id);
-  
+
   // Join a room specific to this user ID so they can receive direct messages
   socket.join(userId);
 
@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
       console.error('❌ Socket message error:', err);
       console.error('Error stack:', err.stack);
       // Send error back to sender
-      socket.emit('error', { 
+      socket.emit('error', {
         message: 'Failed to send message: ' + err.message,
         clientTempId: clientTempId // Include tempId so frontend can handle it
       });
@@ -429,7 +429,7 @@ app.get('/api/chats', authenticate, async (req, res) => {
     if (chats.length === 0) {
       const allChats = await Chat.find({}).lean();
       const userIdStr = userObjectId.toString();
-      
+
       chats = allChats.filter(chat => {
         return chat.participants.some(p => {
           const participantId = p.id;
@@ -437,7 +437,7 @@ app.get('/api/chats', authenticate, async (req, res) => {
           return participantIdStr === userIdStr;
         });
       });
-      
+
       // Sort by lastUpdated
       chats.sort((a, b) => {
         const dateA = a.lastUpdated || a.createdAt || new Date(0);
