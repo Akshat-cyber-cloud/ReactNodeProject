@@ -16,16 +16,22 @@ const { generateToken, authenticate } = require('./middleware/auth');
 
 const app = express();
 const server = http.createServer(app); // Create HTTP server
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 
 app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://collabx-frontend.onrender.com"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 
 app.options("*", cors());
+app.use(express.json());
 
 
 const io = new Server(server, {
@@ -53,26 +59,6 @@ const allowedOrigins = [
   "https://collabx-frontend.onrender.com"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
-
-// VERY IMPORTANT — preflight
-app.options("*", cors());
 app.use(express.json());
 
 mongoose

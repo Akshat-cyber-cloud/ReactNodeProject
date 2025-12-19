@@ -42,6 +42,7 @@ const Login = () => {
           email: formData.email,
           password: formData.password,
         }),
+        credentials: 'include', // ✅ IMPORTANT for CORS + cookies
       });
 
       const data = await response.json();
