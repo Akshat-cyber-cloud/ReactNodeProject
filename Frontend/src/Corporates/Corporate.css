@@ -1,0 +1,545 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    color: white;
+}
+
+.corporate-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    /* Deep Navy */
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.corp-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.corp-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    color: white;
+}
+
+.corp-logo span {
+    color: #eab308;
+    /* Goldish yellow */
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    margin-left: 0.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.corp-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.corp-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.corp-links a:hover {
+    color: white;
+}
+
+.corp-login-btn {
+    background: white;
+    color: #0b1120;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.corp-login-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.corp-hero {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 8rem;
+    height: 80vh;
+    /* Adjust as needed */
+}
+
+.corp-hero-content {
+    max-width: 50%;
+}
+
+.golden-line {
+    width: 60px;
+    height: 3px;
+    background-color: #d4a373;
+    /* Gold/brownish */
+    margin-bottom: 2rem;
+}
+
+.corp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 0.7;
+    font-weight: 400;
+    /* Regular weight for that elegant look */
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.corp-title i {
+    font-style: italic;
+    color: #eab308;
+    color: white;
+    /* Gold highlight */
+}
+
+.corp-heading-primary {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 400;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-align: left;
+    margin: 0;
+}
+
+.corp-heading-italic {
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 400;
+    font-style: italic;
+    color: #eab308;
+    font-family: 'Playfair Display', serif;
+    text-align: left;
+    margin: 0;
+}
+
+.italic-text {
+    font-style: italic;
+    color: #eab308;
+}
+
+.corp-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-bottom: 3rem;
+    max-width: 80%;
+
+}
+
+.corp-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn-gold {
+    background-color: #d4a373;
+    color: #0f172a;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn-gold:hover {
+    background-color: #c5925e;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #d4a373;
+    border: 1px solid rgba(212, 163, 115, 0.3);
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: border-color 0.3s;
+}
+
+.btn-outline:hover {
+    border-color: #d4a373;
+}
+
+/* Hero Right / Stats */
+.corp-hero-visual {
+    position: relative;
+    width: 40%;
+    height: 400px;
+}
+
+.stat-card {
+    position: absolute;
+    background: rgba(17, 24, 39, 0.7);
+    /* Dark semi-transparent */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 4px;
+    color: white;
+    width: 220px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #d4a373;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.card-2 {
+    bottom: 20%;
+    left: 10%;
+}
+
+/* --- Sections Common --- */
+.corp-section {
+    padding: 6rem 8rem;
+    position: relative;
+    z-index: 5;
+    /* Above GridScan if needed, or GridScan stays at top */
+}
+
+/* Ensure background covers the full section */
+.bg-dark {
+    background-color: black;
+}
+
+.bg-darker {
+    background-color: #050a14;
+    /* Slightly different dark shade for contrast */
+}
+
+.corp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+/* --- Value Proposition: Interactive List --- */
+.advantage-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dim all rows when the list is hovered */
+.advantage-list:hover .advantage-row {
+    opacity: 0.3;
+    filter: blur(2px);
+}
+
+/* Highlight the specific hovered row */
+.advantage-list .advantage-row:hover {
+    opacity: 1;
+    filter: blur(0);
+    background: linear-gradient(90deg, rgba(234, 179, 8, 0.1), transparent);
+    padding-left: 3rem;
+    border-color: #eab308;
+}
+
+.advantage-row {
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.adv-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.1);
+    margin-right: 4rem;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.advantage-row:hover .adv-number {
+    color: #eab308;
+    opacity: 0.5;
+}
+
+.adv-content {
+    flex: 1;
+}
+
+.adv-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.advantage-row:hover .adv-content h3 {
+    color: #eab308;
+}
+
+.adv-content p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.adv-arrow {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.advantage-row:hover .adv-arrow {
+    opacity: 1;
+    color: #eab308;
+    transform: translateX(0);
+}
+
+/* --- How It Works: Horizontal Scroll --- */
+.scroll-section-outer {
+    overflow: hidden;
+    /* This will be pinned by GSAP */
+}
+
+.scroll-section-inner {
+    display: flex;
+    width: 400vw;
+    /* 4 panels * 100vw */
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.scroll-panel {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Intro Panel */
+.intro-panel {
+    background: #0b1120;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 10%;
+    /* Add side padding */
+}
+
+.intro-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.intro-panel h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    /* Larger */
+    color: white;
+    line-height: 1;
+    margin: 0;
+}
+
+.intro-desc {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.scroll-indicator span {
+    color: #eab308;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.arrow-right {
+    font-size: 3rem;
+    color: white;
+    animation: bounce 2s infinite;
+}
+
+/* Step Panels */
+.step-panel {
+    background: black;
+    /* Or subtle gradient */
+}
+
+.step-panel:nth-child(even) {
+    background: #050a14;
+}
+
+.panel-content {
+    max-width: 600px;
+    padding: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.panel-id {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.03);
+    position: absolute;
+    top: -4rem;
+    left: -2rem;
+    pointer-events: none;
+    font-weight: 700;
+}
+
+.step-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.step-panel p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(0);
+    }
+
+    40% {
+        transform: translateX(10px);
+    }
+
+    60% {
+        transform: translateX(5px);
+    }
+}
+
+/* --- Footer --- */
+.corp-footer {
+    background: #02040a;
+    /* Very dark */
+    padding: 4rem 0 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-brand h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.footer-brand span {
+    color: #eab308;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+}
+
+.footer-brand p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #eab308;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #475569;
+    font-size: 0.8rem;
+    padding-top: 2rem;
+}
