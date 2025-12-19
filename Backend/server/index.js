@@ -1,3 +1,4 @@
+import cors from "cors";
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -19,20 +20,23 @@ const server = http.createServer(app); // Create HTTP server
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://YOUR-FRONTEND-URL.onrender.com"
+    "https://collabx-frontend.onrender.com"
   ],
   credentials: true
 }));
+
+app.options("*", cors());
 
 
 const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:5173",
-      "https://collabx-frontend.onrender.com" // <-- your frontend URL
+      "https://collabx-frontend.onrender.com",
     ],
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 
 
@@ -44,7 +48,31 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://collabx-frontend.onrender.com"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
+// VERY IMPORTANT — preflight
+app.options("*", cors());
 app.use(express.json());
 
 mongoose
