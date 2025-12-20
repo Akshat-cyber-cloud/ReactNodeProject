@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './SolutionsList.css';
 import { useSocket } from '../context/SocketContext';
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const SolutionsList = ({ isOpen, onClose }) => {
   const { startChat } = useSocket();
   const [solutions, setSolutions] = useState([]);
@@ -19,7 +21,7 @@ const SolutionsList = ({ isOpen, onClose }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/solutions', {
+      const response = await fetch(`${BASE_URL}/api/solutions`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

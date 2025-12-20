@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './style.css';
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const StartupSignup = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -44,7 +46,7 @@ const StartupSignup = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/startups/signup', {
+      const response = await fetch(`${BASE_URL}/api/startups/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

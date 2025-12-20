@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, User } from 'lucide-react';
 import './ChatWidget.css'; // Import the new CSS
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const ChatWidget = () => {
   const { socket, targetChat, setTargetChat } = useSocket();
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +100,7 @@ const ChatWidget = () => {
 
       if (activeChat) {
         const chatId = String(data.chatId);
-        
+
         // Update ID if we were in a temp chat
         if (activeChat._id.toString().startsWith('temp_') && chatId) {
           setActiveChat(prev => ({ ...prev, _id: chatId }));
@@ -124,7 +126,7 @@ const ChatWidget = () => {
               const dataTimestamp = new Date(data.message.timestamp).getTime();
               return Math.abs(msgTimestamp - dataTimestamp) < 1000 && m.content === data.message.content;
             });
-            
+
             if (!exists) {
               newMessages.push(data.message);
             }
@@ -165,7 +167,7 @@ const ChatWidget = () => {
 
   const fetchChats = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/chats', {
+      const response = await fetch(`${BASE_URL}/api/chats`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -214,7 +216,7 @@ const ChatWidget = () => {
       const participantIdStr = String(p.id);
       return participantIdStr !== userIdStr;
     });
-    
+
     if (!recipient) {
       console.error('Recipient not found in chat participants');
       console.error('Current user ID:', userIdStr);
@@ -222,7 +224,7 @@ const ChatWidget = () => {
       alert('Error: Could not determine recipient. Please refresh and try again.');
       return;
     }
-    
+
     // Ensure recipient ID is a string
     const recipientIdStr = String(recipient.id);
     console.log('Sending message - User ID:', userIdStr, 'Recipient ID:', recipientIdStr);
@@ -312,7 +314,7 @@ const ChatWidget = () => {
                     chats.map(chat => (
                       <div
                         key={chat._id}
-                        onClick={() => { 
+                        onClick={() => {
                           // Ensure messages and participants are properly formatted when selecting chat
                           const formattedChat = {
                             ...chat,
@@ -327,8 +329,8 @@ const ChatWidget = () => {
                               _id: msg._id ? String(msg._id) : new Date().getTime().toString()
                             }))
                           };
-                          setActiveChat(formattedChat); 
-                          setTimeout(scrollToBottom, 100); 
+                          setActiveChat(formattedChat);
+                          setTimeout(scrollToBottom, 100);
                         }}
                         className="chat-item"
                       >
